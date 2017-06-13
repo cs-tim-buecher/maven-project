@@ -1,12 +1,9 @@
 pipeline {
-    agent {
-        docker { image 'node:7-alpine' }
-           }
+    agent any
     stages {
-        stage('Test') {
+        stage('Example') {
             steps {
-                sh 'export'
-                sh '/usr/local/bin/docker version'
+                echo 'Hello World'
             }
         }
     }
