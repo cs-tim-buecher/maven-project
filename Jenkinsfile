@@ -1,17 +1,24 @@
 pipeline {
-    agent {
-        dockerfile true
+    agent any
+    tools {
+        jdk "jdk8"
+        maven "mvn3.3.8"
     }
     stages {
-        stage('Example') {
+        stage('first stage') {
             steps {
                 echo 'Hello World'
+                sh "mvn -version"
             }
         }
     }
     post {
-        always {
-            echo 'I will always say Hello again!'
+        success {
+            echo "Only when we haven't failed running the first stage"
+        }
+
+        failure {
+            echo "Only when we fail running the first stage."
         }
     }
 }
